@@ -95,14 +95,14 @@ function build_role_job_map($filePath) {
         if ($key == 0) {
             continue;
         } elseif ($key == 1) {
-            # 解析职业数据
-            for ($i = 6; $i <= 20; $i++) {
+            # 解析职业数据29=AD
+            for ($i = 6; $i <= 29; $i++) {
                 $roleJobTitleMap[] = $item[$i];
                 $roleJobTitleMap[] = $item[$i] . '-一觉';
             }
         } elseif ($key == 2) {
             # 解析职业数据
-            for ($i = 6; $i <= 20; $i++) {
+            for ($i = 6; $i <= 29; $i++) {
 //                $roleMapIdArr = explode('_', $item[$i]);
 //                $roleMapIdArr[2] = 1;
 //                $roleMapId = implode('_', $roleMapIdArr);
@@ -165,7 +165,7 @@ function build_suit_equipment_data($filePath, $roleJobMap) {
         $equipData[$equipId]['suitName'] = $equipSuitName;
         $equipData[$equipId]['total'] = $equipSuitNum;
 
-        for ($i = 6; $i <= 20; $i++) {
+        for ($i = 6; $i <= 29; $i++) {
             $sort = $item[$i] ? intval($item[$i]) : 99;
             # 转职职业ID
             $roleId = $list[2][$i];
@@ -229,7 +229,8 @@ function build_part_equipment_data($filePath, $roleJobMap) {
         $partData[$equipId]['equipName'] = $equipName;
         $partData[$equipId]['equipType'] = $equipType;
 
-        for ($i = 3; $i <= 17; $i++) {
+        // 25=Z
+        for ($i = 3; $i <= 25; $i++) {
             $sort = $item[$i] ?: 0;
             # 转职职业ID
             $roleId = $list[2][$i];

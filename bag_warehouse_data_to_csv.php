@@ -97,13 +97,14 @@ function build_role_job_map($filePath) {
             continue;
         } elseif ($key == 1) {
             # 解析职业数据29=AD
-            for ($i = 6; $i <= self::SUIT_COLS_NUM; $i++) {
+            $endCol = count($item) - 1;
+            for ($i = 6; $i <= $endCol; $i++) {
                 $roleJobTitleMap[] = $item[$i];
                 $roleJobTitleMap[] = $item[$i] . '-一觉';
             }
         } elseif ($key == 2) {
             # 解析职业数据
-            for ($i = 6; $i <= self::SUIT_COLS_NUM; $i++) {
+            for ($i = 6; $i <= $endCol; $i++) {
 //                $roleMapIdArr = explode('_', $item[$i]);
 //                $roleMapIdArr[2] = 1;
 //                $roleMapId = implode('_', $roleMapIdArr);
@@ -138,6 +139,9 @@ function build_suit_equipment_data($filePath, $roleJobMap) {
 
     foreach ($list as $key => $item) {
         if ($key < 3) {
+            if ($key == 1) {
+                $endCol = count($item) - 1;
+            }
             continue;
         }
 
@@ -166,7 +170,7 @@ function build_suit_equipment_data($filePath, $roleJobMap) {
         $equipData[$equipId]['suitName'] = $equipSuitName;
         $equipData[$equipId]['total'] = $equipSuitNum;
 
-        for ($i = 6; $i <= self::SUIT_COLS_NUM; $i++) {
+        for ($i = 6; $i <= $endCol; $i++) {
             $sort = $item[$i] ? intval($item[$i]) : 99;
             # 转职职业ID
             $roleId = $list[2][$i];
@@ -219,6 +223,9 @@ function build_part_equipment_data($filePath, $roleJobMap) {
 
     foreach ($list as $key => $item) {
         if ($key < 3) {
+            if ($key == 1) {
+                $endCol = count($item) - 1;
+            }
             continue;
         }
 
@@ -231,7 +238,7 @@ function build_part_equipment_data($filePath, $roleJobMap) {
         $partData[$equipId]['equipType'] = $equipType;
 
         // 25=Z
-        for ($i = 3; $i <= self::RECOMEND_COLS_NUM; $i++) {
+        for ($i = 3; $i <= $endCol; $i++) {
             $sort = $item[$i] ?: 0;
             # 转职职业ID
             $roleId = $list[2][$i];
